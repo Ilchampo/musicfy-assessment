@@ -1,3 +1,4 @@
 # Ignore Node Modules & Dist
 musicfy-backend/node_modules/
 musicfy-backend/dist/
+musicfy-backend/.env

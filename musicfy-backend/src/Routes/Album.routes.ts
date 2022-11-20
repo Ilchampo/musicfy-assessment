@@ -9,7 +9,7 @@ const albumRouter = Router();
 // @access  Public
 albumRouter.get('/get', AlbumController.GetAllAlbums);
 
-// @routes  POST /create
+// @routes  POST /album/create
 // @descri  Creates a new album
 // @params  None
 // @access  Public
