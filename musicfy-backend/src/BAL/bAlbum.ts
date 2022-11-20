@@ -11,6 +11,7 @@ export async function GetAllAlbums(): Promise<Result> {
             },
             order: [['CreatedAt', 'DESC']],
         });
+        albums.forEach((album) => {});
         return new Result(200, 'All albums retrieved correctly', albums);
     } catch (error) {
         return new Result(500, 'Error getting all the albums', error);

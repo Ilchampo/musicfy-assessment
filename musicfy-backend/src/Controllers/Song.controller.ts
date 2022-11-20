@@ -5,7 +5,7 @@ import { ISong } from '../DAL/Song';
 export const GetAllSongs = async (req: Request, res: Response): Promise<Response> => {
     const albumId = req.params.albumId;
     const result = await Song.GetAllSongs(albumId);
-    return res.status(result.status).json({ msg: result.message, payload: result.payload });
+    return res.status(result.Status).json({ msg: result.Message, payload: result.Payload });
 };
 
 export const CreateSong = async (req: Request, res: Response): Promise<Response> => {
@@ -15,7 +15,7 @@ export const CreateSong = async (req: Request, res: Response): Promise<Response>
         Duration: req.body.duration,
     };
     const result = await Song.CreateSong(request);
-    return res.status(result.status).json({ msg: result.message, payload: result.payload });
+    return res.status(result.Status).json({ msg: result.Message, payload: result.Payload });
 };
 
 export const EditSongById = async (req: Request, res: Response): Promise<Response> => {
@@ -25,11 +25,11 @@ export const EditSongById = async (req: Request, res: Response): Promise<Respons
         Duration: req.body.duration,
     };
     const result = await Song.EditSongById(songId, request);
-    return res.status(result.status).json({ msg: result.message, payload: result.payload });
+    return res.status(result.Status).json({ msg: result.Message, payload: result.Payload });
 };
 
 export const DeleteSongById = async (req: Request, res: Response): Promise<Response> => {
     const songId = req.params.id;
     const result = await Song.DeleteSongById(songId);
-    return res.status(result.status).json({ msg: result.message, payload: result.payload });
+    return res.status(result.Status).json({ msg: result.Message, payload: result.Payload });
 };
