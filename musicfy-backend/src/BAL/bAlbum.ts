@@ -49,7 +49,7 @@ export async function GetAlbumById(id: any): Promise<Result> {
                     Deleted: false,
                 },
             });
-            return new Result(200, 'All album retrieved correctly', album);
+            return new Result(200, 'Album retrieved correctly', album);
         } catch (error) {
             return new Result(500, `Error getting the album with id ${id}`, error);
         }
