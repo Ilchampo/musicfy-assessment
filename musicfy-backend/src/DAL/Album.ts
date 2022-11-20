@@ -11,7 +11,7 @@ export interface IAlbum {
     CreatedAt?: Date;
     UpdatedAt?: Date;
     Deleted?: boolean;
-};
+}
 
 export const Album = sequelize.define(
     'Album',

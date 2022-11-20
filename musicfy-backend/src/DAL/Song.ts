@@ -9,7 +9,7 @@ export interface ISong {
     CreatedAt?: Date;
     UpdatedAt?: Date;
     Deleted?: boolean;
-};
+}
 
 export const Song = sequelize.define(
     'Song',

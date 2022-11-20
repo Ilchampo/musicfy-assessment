@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import { appConfiguration } from './Config';
 
+import { appConfiguration } from './Config';
 import albumRouter from './Routes/Album.routes';
 import songRouter from './Routes/Song.routes';
 

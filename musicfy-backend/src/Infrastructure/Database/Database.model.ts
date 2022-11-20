@@ -1,52 +1,52 @@
 export interface IDatabase {
-    username: string;
-    password: string;
-    database: string;
-    host: string;
-    port: string | number;
-    dialect: string;
+    Username: string;
+    Password: string;
+    Database: string;
+    Host: string;
+    Port: string | number;
+    Dialect: string;
 }
 
 export class Database {
-    private username: string;
-    private password: string;
-    private database: string;
-    private host: string;
-    private port: string | number;
-    private dialect: string;
+    private Username: string;
+    private Password: string;
+    private Database: string;
+    private Host: string;
+    private Port: string | number;
+    private Dialect: string;
 
     constructor(
-        username: string,
-        password: string,
-        database: string,
-        host: string,
-        port: string | number,
-        dialect: string
+        Username: string,
+        Password: string,
+        Database: string,
+        Host: string,
+        Port: string | number,
+        Dialect: string
     ) {
-        this.username = username;
-        this.password = password;
-        this.database = database;
-        this.host = host;
-        this.port = port;
-        this.dialect = dialect;
+        this.Username = Username;
+        this.Password = Password;
+        this.Database = Database;
+        this.Host = Host;
+        this.Port = Port;
+        this.Dialect = Dialect;
     }
 
     GetUsername(): string {
-        return this.username;
+        return this.Username;
     }
     GetPassword(): string {
-        return this.password;
+        return this.Password;
     }
     GetDatabase(): string {
-        return this.database;
+        return this.Database;
     }
     GetHost(): string {
-        return this.host;
+        return this.Host;
     }
     GetPort(): string | number {
-        return this.port;
+        return this.Port;
     }
     GetDialect(): string {
-        return this.dialect;
+        return this.Dialect;
     }
 }
