@@ -1,6 +1,7 @@
 import * as vf from '../Helpers/ValidateFields';
 import { Album, IAlbum } from '../DAL/Album';
 import { Result } from '../DAL/Result';
+import { DeleteSongsByAlbumId } from './bSong';
 
 export async function GetAllAlbums(): Promise<Result> {
     try {
@@ -96,6 +97,7 @@ export async function DeleteAlbumById(id: any): Promise<Result> {
             });
             album?.set({ Deleted: true });
             await album?.save();
+            await DeleteSongsByAlbumId(id);
             return new Result(200, 'Album deleted successfully', album);
         } catch (error) {
             return new Result(500, `Error deleting the album with id ${id}`, error);

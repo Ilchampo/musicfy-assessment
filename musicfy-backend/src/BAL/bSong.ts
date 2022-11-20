@@ -26,6 +26,7 @@ export async function CreateSong(request: ISong): Promise<Result> {
             if (vf.IsNumeric(request.Duration)) {
                 try {
                     const newSong = await Song.create({
+                        AlbumId: request.AlbumId,
                         Name: request.Name,
                         Duration: request.Duration,
                         CreatedAt: Date.now(),
@@ -86,4 +87,26 @@ export async function DeleteSongById(id: any): Promise<Result> {
         }
     }
     return new Result(400, 'The song id is invalid', null);
+}
+
+export async function DeleteSongsByAlbumId(albumId: any): Promise<Result> {
+    if (vf.IsNumeric(albumId)) {
+        try {
+            await Song.update(
+                {
+                    Deleted: true,
+                },
+                {
+                    where: {
+                        AlbumId: albumId,
+                        Deleted: false,
+                    },
+                }
+            );
+            return new Result(200, 'Songs deleted successfully', null);
+        } catch (error) {
+            return new Result(500, `Error deleting the songs with that album id ${albumId}`, error);
+        }
+    }
+    return new Result(400, 'The album id is invalid', null);
 }

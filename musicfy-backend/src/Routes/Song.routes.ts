@@ -13,7 +13,7 @@ songRouter.get('/get/:albumId', SongController.GetAllSongs);
 // @descri  Creates a new song
 // @params  {albumId}: Album Id
 // @access  Public
-songRouter.post('/create', SongController.CreateSong);
+songRouter.post('/create/:albumId', SongController.CreateSong);
 
 // @routes  PUT /song/edit/:id
 // @descri  Updates the fields of the song
