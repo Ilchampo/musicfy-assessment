@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { appConfiguration } from '../Config';
 import * as Album from '../BAL/bAlbum';
 import { IAlbum } from '../DAL/Album';
 
@@ -28,6 +29,10 @@ export const GetAllAlbums = async (req: Request, res: Response): Promise<Respons
 };
 
 export const CreateAlbum = async (req: Request, res: Response): Promise<Response> => {
+    if ((await AlBUM_CACHE).size === appConfiguration.albums.max) {
+        return res.status(400).json({ msg: 'Limit of albums reached', payload: null });
+    }
+
     const request: IAlbum = {
         Name: req.body.name,
         Artist: req.body.artist,

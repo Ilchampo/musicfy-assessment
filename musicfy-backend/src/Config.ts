@@ -7,6 +7,6 @@ export const appConfiguration = {
         port: process.env.PORT || 8080,
     },
     albums: {
-        max: 5,
+        max: 20,
     },
 };
