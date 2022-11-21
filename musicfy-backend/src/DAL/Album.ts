@@ -3,50 +3,50 @@ import { sequelize } from '../Infrastructure/Database/Database';
 import { Song } from './Song';
 
 export interface IAlbum {
-    Id?: number;
-    Name?: string;
-    Artist?: string;
-    Year?: number;
-    ImageUrl?: string;
-    CreatedAt?: Date;
-    UpdatedAt?: Date;
-    Deleted?: boolean;
+    id?: number;
+    name?: string;
+    artist?: string;
+    year?: number;
+    imageUrl?: string;
+    createdAt?: Date;
+    updatedAt?: Date;
+    deleted?: boolean;
 }
 
 export const Album = sequelize.define(
     'Album',
     {
-        Id: {
+        id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
         },
-        Name: {
+        name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        Artist: {
+        artist: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        Year: {
+        year: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        ImageUrl: {
+        imageUrl: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        CreatedAt: {
+        createdAt: {
             type: DataTypes.DATE,
             allowNull: false,
         },
-        UpdatedAt: {
+        updatedAt: {
             type: DataTypes.DATE,
             allowNull: false,
         },
-        Deleted: {
+        deleted: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false,
@@ -56,7 +56,7 @@ export const Album = sequelize.define(
 );
 
 Album.hasMany(Song, {
-    foreignKey: 'AlbumId',
-    sourceKey: 'Id',
+    foreignKey: 'albumId',
+    sourceKey: 'id',
 });
-Song.belongsTo(Album, { foreignKey: 'AlbumId', targetKey: 'Id' });
+Song.belongsTo(Album, { foreignKey: 'albumId', targetKey: 'id' });

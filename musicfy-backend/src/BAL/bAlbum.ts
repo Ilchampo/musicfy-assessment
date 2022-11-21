@@ -7,11 +7,10 @@ export async function GetAllAlbums(): Promise<Result> {
     try {
         const albums = await Album.findAll({
             where: {
-                Deleted: false,
+                deleted: false,
             },
-            order: [['CreatedAt', 'DESC']],
+            order: [['createdAt', 'DESC']],
         });
-        albums.forEach((album) => {});
         return new Result(200, 'All albums retrieved correctly', albums);
     } catch (error) {
         return new Result(500, 'Error getting all the albums', error);
@@ -19,17 +18,17 @@ export async function GetAllAlbums(): Promise<Result> {
 }
 
 export async function CreateAlbum(request: IAlbum): Promise<Result> {
-    if (vf.IsAlpha(request.Name) && vf.IsAlpha(request.Artist)) {
-        if (vf.IsBetweenDates(request.Year)) {
+    if (vf.IsAlpha(request.name) && vf.IsAlpha(request.artist)) {
+        if (vf.IsBetweenDates(request.year)) {
             try {
                 const newAlbum = await Album.create({
-                    Name: request.Name,
-                    Artist: request.Artist,
-                    Year: request.Year,
-                    ImageUrl: request.ImageUrl,
-                    CreatedAt: Date.now(),
-                    UpdatedAt: Date.now(),
-                    Deleted: false,
+                    name: request.name,
+                    artist: request.artist,
+                    year: request.year,
+                    imageUrl: request.imageUrl,
+                    createdAt: Date.now(),
+                    updatedAt: Date.now(),
+                    deleted: false,
                 });
                 return new Result(200, 'Album created successfully', newAlbum);
             } catch (error) {
@@ -45,8 +44,8 @@ export async function GetAlbumById(id: any): Promise<Result> {
         try {
             const album = await Album.findOne({
                 where: {
-                    Id: id,
-                    Deleted: false,
+                    id: id,
+                    deleted: false,
                 },
             });
             return new Result(200, 'Album retrieved correctly', album);
@@ -59,21 +58,21 @@ export async function GetAlbumById(id: any): Promise<Result> {
 
 export async function EditAlbumById(id: any, request: IAlbum): Promise<Result> {
     if (vf.IsNumeric(id)) {
-        if (vf.IsAlpha(request.Name) && vf.IsAlpha(request.Artist)) {
-            if (vf.IsBetweenDates(request.Year)) {
+        if (vf.IsAlpha(request.name) && vf.IsAlpha(request.artist)) {
+            if (vf.IsBetweenDates(request.year)) {
                 try {
                     const album = await Album.findOne({
                         where: {
-                            Id: id,
-                            Deleted: false,
+                            id: id,
+                            deleted: false,
                         },
                     });
                     album?.set({
-                        Name: request.Name,
-                        Artist: request.Artist,
-                        Year: request.Year,
-                        ImageUrl: request.ImageUrl,
-                        UpdatedAt: Date.now(),
+                        name: request.name,
+                        artist: request.artist,
+                        year: request.year,
+                        imageUrl: request.imageUrl,
+                        updatedAt: Date.now(),
                     });
                     await album?.save();
                     return new Result(200, 'Album edited successfully', album);
@@ -92,11 +91,11 @@ export async function DeleteAlbumById(id: any): Promise<Result> {
         try {
             const album = await Album.findOne({
                 where: {
-                    Id: id,
-                    Deleted: false,
+                    id: id,
+                    deleted: false,
                 },
             });
-            album?.set({ Deleted: true });
+            album?.set({ deleted: true });
             await album?.save();
             await DeleteSongsByAlbumId(id);
             return new Result(200, 'Album deleted successfully', album);

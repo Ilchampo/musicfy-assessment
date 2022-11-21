@@ -7,10 +7,10 @@ export async function GetAllSongs(albumId: any): Promise<Result> {
         try {
             const songs = await Song.findAll({
                 where: {
-                    AlbumId: albumId,
-                    Deleted: false,
+                    albumId: albumId,
+                    deleted: false,
                 },
-                order: [['CreatedAt', 'DESC']],
+                order: [['createdAt', 'DESC']],
             });
             return new Result(200, 'All songs retrieved correctly', songs);
         } catch (error) {
@@ -21,17 +21,17 @@ export async function GetAllSongs(albumId: any): Promise<Result> {
 }
 
 export async function CreateSong(request: ISong): Promise<Result> {
-    if (vf.IsNumeric(request.AlbumId)) {
-        if (vf.IsAlpha(request.Name)) {
-            if (vf.IsNumeric(request.Duration)) {
+    if (vf.IsNumeric(request.albumId)) {
+        if (vf.IsAlpha(request.name)) {
+            if (vf.IsNumeric(request.duration)) {
                 try {
                     const newSong = await Song.create({
-                        AlbumId: request.AlbumId,
-                        Name: request.Name,
-                        Duration: request.Duration,
-                        CreatedAt: Date.now(),
-                        UpdatedAt: Date.now(),
-                        Deleted: false,
+                        albumId: request.albumId,
+                        name: request.name,
+                        duration: request.duration,
+                        createdAt: Date.now(),
+                        updatedAt: Date.now(),
+                        deleted: false,
                     });
                     return new Result(200, 'Song created successfully', newSong);
                 } catch (error) {
@@ -46,18 +46,18 @@ export async function CreateSong(request: ISong): Promise<Result> {
 
 export async function EditSongById(id: any, request: ISong): Promise<Result> {
     if (vf.IsNumeric(id)) {
-        if (vf.IsAlpha(request.Name) && vf.IsNumeric(request.Duration)) {
+        if (vf.IsAlpha(request.name) && vf.IsNumeric(request.duration)) {
             try {
                 const song = await Song.findOne({
                     where: {
-                        Id: id,
-                        Deleted: false,
+                        id: id,
+                        deleted: false,
                     },
                 });
                 song?.set({
-                    Name: request.Name,
-                    Duration: request.Duration,
-                    UpdatedAt: Date.now(),
+                    name: request.name,
+                    duration: request.duration,
+                    updatedAt: Date.now(),
                 });
                 await song?.save();
                 return new Result(200, 'Song edited successfully', song);
@@ -75,11 +75,11 @@ export async function DeleteSongById(id: any): Promise<Result> {
         try {
             const song = await Song.findOne({
                 where: {
-                    Id: id,
-                    Deleted: false,
+                    id: id,
+                    deleted: false,
                 },
             });
-            song?.set({ Deleted: true });
+            song?.set({ deleted: true });
             await song?.save();
             return new Result(200, 'Song deleted successfully', song);
         } catch (error) {
@@ -94,12 +94,12 @@ export async function DeleteSongsByAlbumId(albumId: any): Promise<Result> {
         try {
             await Song.update(
                 {
-                    Deleted: true,
+                    deleted: true,
                 },
                 {
                     where: {
-                        AlbumId: albumId,
-                        Deleted: false,
+                        albumId: albumId,
+                        deleted: false,
                     },
                 }
             );

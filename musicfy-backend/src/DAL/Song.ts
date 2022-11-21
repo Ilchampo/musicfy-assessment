@@ -2,41 +2,41 @@ import { DataTypes } from 'sequelize';
 import { sequelize } from '../Infrastructure/Database/Database';
 
 export interface ISong {
-    Id?: number;
-    AlbumId?: number | string;
-    Name?: string;
-    Duration?: number;
-    CreatedAt?: Date;
-    UpdatedAt?: Date;
-    Deleted?: boolean;
+    id?: number;
+    albumId?: number | string;
+    name?: string;
+    duration?: number;
+    createdAt?: Date;
+    updatedAt?: Date;
+    deleted?: boolean;
 }
 
 export const Song = sequelize.define(
     'Song',
     {
-        Id: {
+        id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
         },
-        Name: {
+        name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        Duration: {
+        duration: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        CreatedAt: {
+        createdAt: {
             type: DataTypes.DATE,
             allowNull: false,
         },
-        UpdatedAt: {
+        updatedAt: {
             type: DataTypes.DATE,
             allowNull: false,
         },
-        Deleted: {
+        deleted: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false,

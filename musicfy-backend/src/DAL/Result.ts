@@ -1,11 +1,11 @@
 export class Result {
-    public Status: number;
-    public Message: string;
-    public Payload?: any;
+    public status: number;
+    public message: string;
+    public payload?: any;
 
     constructor(status: number, message: string, payload: any) {
-        this.Status = status;
-        this.Message = message;
-        this.Payload = payload || null;
+        this.status = status;
+        this.message = message;
+        this.payload = payload || null;
     }
 }
