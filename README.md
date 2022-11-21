@@ -30,3 +30,5 @@ For the backend of Musicfy, Express JS will be used as Node Js runtime library. 
 ### b. Musicfy FrontEnd
 
 For the backend of Musicfy, ReactJs will be used as FrontEnd library.
+
+![Show Albums](/musicfy-frontend/docs/images/showAlbumsAfter.png)
