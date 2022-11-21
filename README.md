@@ -29,4 +29,4 @@ For the backend of Musicfy, Express JS will be used as Node Js runtime library. 
 
 ### b. Musicfy FrontEnd
 
-For the backend of Musicfy, ReactJs will be used as FrontEnd library along with NextJs Framework. This Framework provides a more concise structure for ReactJs projects and commonly used on real-large scale applications.
+For the backend of Musicfy, ReactJs will be used as FrontEnd library.
